@@ -1,0 +1,7 @@
+{
+  "name": "Qamartrust",
+  "description": "A modern and responsive dashboard layout with a left-sided navigation panel, built with React, TypeScript, and Tailwind CSS.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

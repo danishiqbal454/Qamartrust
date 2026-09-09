@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                'Noto Nastaliq Urdu',
+                'Calibri',
+                'ui-sans-serif', 
+                'system-ui', 
+                '-apple-system', 
+                'BlinkMacSystemFont', 
+                '"Segoe UI"', 
+                'Roboto', 
+                '"Helvetica Neue"', 
+                'Arial', 
+                '"Noto Sans"', 
+                'sans-serif', 
+                '"Apple Color Emoji"', 
+                '"Segoe UI Emoji"', 
+                '"Segoe UI Symbol"', 
+                '"Noto Color Emoji"'
+              ],
+            },
+          },
+        },
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/"
+  }
+}
+</script>
+<style>
+  .custom-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="%236b7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4"/></svg>');
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem; /* pr-10 */
+  }
+
+  html.dark .custom-select {
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="%239ca3af" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4"/></svg>');
+  }
+  
+  /* This class hides elements on screen that should only appear when printing */
+  .print-only-block {
+    display: none;
+  }
+  
+  .whatsapp-bg {
+    background-color: #e5ddd5;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAOklEQVR42u3OMQEAAAgDoC25/z8t4gc4joAQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCF8tN2/eAAAAABJRU5ErkJggg==");
+    background-repeat: repeat;
+  }
+
+  html.dark .whatsapp-bg {
+      background-color: #0d1418;
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAOklEQVR42u3OMQEAAAgDoC25/z8t4gc4joAQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCF8tN2/eAAAAABJRU5ErkJggg==");
+      opacity: 0.06;
+  }
+
+
+  @media print {
+    /* Hide non-printable elements */
+    .no-print {
+      display: none !important;
+    }
+    
+    /* Make the print-only blocks visible */
+    .print-only-block {
+      display: block !important;
+    }
+
+    /* When printing, hide everything by default */
+    body.is-printing * {
+      visibility: hidden;
+    }
+
+    /* Then, reveal the printable content and its children */
+    body.is-printing .printable-content,
+    body.is-printing .printable-content * {
+      visibility: visible;
+    }
+
+    /* Position the printable content to fill the page */
+    body.is-printing .printable-content {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100vh; /* Use viewport height */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Style the voucher to take up the full page */
+    body.is-printing .voucher-copy {
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+        padding: 1cm;
+        page-break-inside: avoid;
+    }
+    
+    @page {
+      size: A4;
+      margin: 0; /* Margins are handled by .voucher-copy padding */
+    }
+  }
+</style>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
